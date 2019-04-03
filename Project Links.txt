@@ -1,0 +1,5 @@
+https://docs.microsoft.com/en-us/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application
+
+https://github.com/EmilyWinjum/SDGTraining
+
+https://cass-softdev.slack.com/messages/DHM3E27L7/
