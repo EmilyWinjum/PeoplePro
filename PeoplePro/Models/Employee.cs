@@ -9,9 +9,7 @@ namespace PeoplePro.Models
         [Required]
         public string FirstName { get; set; }
 
-        public virtual ICollection<Department> Departments { get; set; }
-
-        public virtual ICollection<Building> Buildings { get; set; }
+        public virtual Building Building { get; set; }
     }
 
 
