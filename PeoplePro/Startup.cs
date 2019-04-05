@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using System.Data.Entity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PeoplePro.DAL;
@@ -36,8 +36,9 @@ namespace PeoplePro
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddDbContext<PeopleContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("PeopleContext")));
+            //Code incompatible with EF6 framework
+            //services.AddDbContext<PeopleContext>(options =>
+                //options.UseSqlServer(Configuration.GetConnectionString("PeopleContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
