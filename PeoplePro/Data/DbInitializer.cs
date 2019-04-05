@@ -1,17 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Data.Entity;
 using PeoplePro.Models;
 using System.Threading.Tasks;
 
-namespace PeoplePro.DAL
+namespace PeoplePro.Data
 {
-    public class PeopleInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<PeopleContext>
+    public class DbInitializer
     {
-        protected override void Seed(PeopleContext context)
+        public static void Initialize(PeopleContext context)
         {
-            var departments = new List<Department>
+            context.Database.EnsureCreated();
+
+            // Look for existing entries
+            if (context.Employees.Any())
+            {
+                return; // DB is seeded
+            }
+            
+
+            var departments = new Department[]
             {
                 new Department{DepartmentName="Engineering"},
                 new Department{DepartmentName="Education"},
@@ -19,10 +27,13 @@ namespace PeoplePro.DAL
                 new Department{DepartmentName="Writing"}
             };
 
-            departments.ForEach(s => context.Departments.Add(s));
+            foreach (Department d in departments)
+            {
+                context.Departments.Add(d);
+            }
             context.SaveChanges();
 
-            var buildings = new List<Building>
+            var buildings = new Building[]
             {
                 new Building{BuildingName="Mechanical labs",DepartmentId=1},
                 new Building{BuildingName="IT helpdesk",DepartmentId=1},
@@ -32,10 +43,13 @@ namespace PeoplePro.DAL
                 new Building{BuildingName="Writing room",DepartmentId=4}
             };
 
-            buildings.ForEach(s => context.Buildings.Add(s));
+            foreach (Building b in buildings)
+            {
+                context.Buildings.Add(b);
+            }
             context.SaveChanges();
 
-            var employees = new List<Employee>
+            var employees = new Employee[]
             {
                 new Employee{FirstName="Emily",BuildingId=2},
                 new Employee{FirstName="Josie",BuildingId=2},
@@ -44,7 +58,10 @@ namespace PeoplePro.DAL
                 new Employee{FirstName="Zi",BuildingId=6}
             };
 
-            employees.ForEach(s => context.Employees.Add(s));
+            foreach (Employee e in employees)
+            {
+                context.Employees.Add(e);
+            }
             context.SaveChanges();
 
         }
