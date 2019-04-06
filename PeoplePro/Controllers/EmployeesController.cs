@@ -22,7 +22,7 @@ namespace PeoplePro.Controllers
         // GET: Employees
         public async Task<IActionResult> Index()
         {
-            var peopleContext = _context.Employees.Include(e => e.Building);
+            var peopleContext = _context.Employees.Include(e => e.Building.Department);
             return View(await peopleContext.ToListAsync());
         }
 

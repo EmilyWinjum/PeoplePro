@@ -35,12 +35,12 @@ namespace PeoplePro.Data
 
             var buildings = new Building[]
             {
-                new Building{BuildingName="Mechanical labs",DepartmentId=1},
+                new Building{BuildingName="Mechanical labs",DepartmentId=0},
                 new Building{BuildingName="IT helpdesk",DepartmentId=1},
                 new Building{BuildingName="Student teaching area",DepartmentId=2},
                 new Building{BuildingName="Concert hall",DepartmentId=3},
                 new Building{BuildingName="Rehearsal space",DepartmentId=3},
-                new Building{BuildingName="Writing room",DepartmentId=4}
+                new Building{BuildingName="Writing room",DepartmentId=3}
             };
 
             foreach (Building b in buildings)

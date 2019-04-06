@@ -10,6 +10,7 @@ namespace PeoplePro.Models
         public int BuildingId { get; set; }
         public int DepartmentId { get; set; }
         public string BuildingName { get; set; }
+        public virtual Department Department { get; set; }
         public virtual ICollection<Employee> Employees { get; set; }
     }
 }
