@@ -8,6 +8,7 @@ namespace PeoplePro.Models
 {
     public class Department
     {
+        [Key]
         public int DepartmentId { get; set; }
         [Required]
         [Display(Name="Department Name")]

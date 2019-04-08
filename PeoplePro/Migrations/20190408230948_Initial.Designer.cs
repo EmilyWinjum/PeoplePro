@@ -9,7 +9,7 @@ using PeoplePro.Data;
 namespace PeoplePro.Migrations
 {
     [DbContext(typeof(PeopleContext))]
-    [Migration("20190408221613_Initial")]
+    [Migration("20190408230948_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

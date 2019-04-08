@@ -5,6 +5,17 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Migrations\20190408221613_Initial.cs" />
+    <Compile Remove="Migrations\20190408221613_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20190408224428_Test.cs" />
+    <Compile Remove="Migrations\20190408224428_Test.Designer.cs" />
+    <Compile Remove="Migrations\20190408225233_Initial.cs" />
+    <Compile Remove="Migrations\20190408225233_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20190408225932_Initial.cs" />
+    <Compile Remove="Migrations\20190408225932_Initial.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />

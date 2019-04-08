@@ -8,6 +8,7 @@ namespace PeoplePro.Models
 {
     public class Building
     {
+        [Key]
         public int BuildingId { get; set; }
         [Required]
         [Display(Name="Building Name")]

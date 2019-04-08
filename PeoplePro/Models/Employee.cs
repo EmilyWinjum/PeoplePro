@@ -5,6 +5,7 @@ namespace PeoplePro.Models
 {
     public class Employee
     {
+        [Key]
         public int EmployeeId { get; set; }
         public int BuildingId { get; set; }
         public int DepartmentId { get; set; }
