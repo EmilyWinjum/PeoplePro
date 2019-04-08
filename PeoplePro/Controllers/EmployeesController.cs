@@ -49,8 +49,8 @@ namespace PeoplePro.Controllers
         // GET: Employees/Create
         public IActionResult Create()
         {
-            ViewData["BuildingId"] = new SelectList(_context.Buildings, "BuildingId", "BuildingId");
-            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentId");
+            ViewData["BuildingId"] = new SelectList(_context.Buildings, "BuildingId", "Name");
+            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "Name");
             return View();
         }
 
@@ -67,8 +67,8 @@ namespace PeoplePro.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BuildingId"] = new SelectList(_context.Buildings, "BuildingId", "BuildingId", employee.BuildingId);
-            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentId", employee.DepartmentId);
+            ViewData["BuildingId"] = new SelectList(_context.Buildings, "BuildingId", "Name", employee.BuildingId);
+            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "Name", employee.DepartmentId);
             return View(employee);
         }
 
@@ -85,9 +85,8 @@ namespace PeoplePro.Controllers
             {
                 return NotFound();
             }
-
-            ViewData["BuildingId"] = new SelectList(_context.Buildings, "BuildingId", "BuildingId", employee.BuildingId);
-            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentId", employee.DepartmentId);
+            ViewData["BuildingId"] = new SelectList(_context.Buildings, "BuildingId", "Name", employee.BuildingId);
+            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "Name", employee.DepartmentId);
             return View(employee);
         }
 
@@ -123,8 +122,8 @@ namespace PeoplePro.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BuildingId"] = new SelectList(_context.Buildings, "BuildingId", "BuildingId", employee.BuildingId);
-            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentId", employee.DepartmentId);
+            ViewData["BuildingId"] = new SelectList(_context.Buildings, "BuildingId", "Name", employee.BuildingId);
+            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "Name", employee.DepartmentId);
             return View(employee);
         }
 

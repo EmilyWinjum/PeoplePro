@@ -21,10 +21,10 @@ namespace PeoplePro.Data
 
             var departments = new Department[]
             {
-                new Department{DepartmentName="Engineering"},
-                new Department{DepartmentName="Education"},
-                new Department{DepartmentName="Music"},
-                new Department{DepartmentName="Writing"}
+                new Department{Name="Engineering"},
+                new Department{Name="Education"},
+                new Department{Name="Music"},
+                new Department{Name="Writing"}
             };
 
             foreach (Department d in departments)
@@ -35,12 +35,12 @@ namespace PeoplePro.Data
 
             var buildings = new Building[]
             {
-                new Building{BuildingName="Mechanical labs"},
-                new Building{BuildingName="IT helpdesk"},
-                new Building{BuildingName="Student teaching area"},
-                new Building{BuildingName="Concert hall"},
-                new Building{BuildingName="Rehearsal space"},
-                new Building{BuildingName="Writing room"}
+                new Building{Name="Mechanical labs"},
+                new Building{Name="IT helpdesk"},
+                new Building{Name="Student teaching area"},
+                new Building{Name="Concert hall"},
+                new Building{Name="Rehearsal space"},
+                new Building{Name="Writing room"}
             };
 
             foreach (Building b in buildings)

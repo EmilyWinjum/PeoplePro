@@ -9,7 +9,7 @@ using PeoplePro.Data;
 namespace PeoplePro.Migrations
 {
     [DbContext(typeof(PeopleContext))]
-    [Migration("20190408200935_Initial")]
+    [Migration("20190408221613_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,7 +26,8 @@ namespace PeoplePro.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("BuildingName");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.HasKey("BuildingId");
 
@@ -39,7 +40,8 @@ namespace PeoplePro.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("DepartmentName");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.HasKey("DepartmentId");
 

@@ -8,10 +8,10 @@ namespace PeoplePro.Models
 {
     public class Department
     {
-        [Display(Name="Department Number")]
         public int DepartmentId { get; set; }
+        [Required]
         [Display(Name="Department Name")]
-        public string DepartmentName { get; set; }
+        public string Name { get; set; }
         public virtual ICollection<Employee> Employees { get; set; }
     }
 }

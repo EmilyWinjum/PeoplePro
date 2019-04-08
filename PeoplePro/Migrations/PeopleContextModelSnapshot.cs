@@ -24,7 +24,8 @@ namespace PeoplePro.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("BuildingName");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.HasKey("BuildingId");
 
@@ -37,7 +38,8 @@ namespace PeoplePro.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("DepartmentName");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.HasKey("DepartmentId");
 
