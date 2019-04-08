@@ -26,11 +26,7 @@ namespace PeoplePro.Migrations
 
                     b.Property<string>("BuildingName");
 
-                    b.Property<int>("DepartmentId");
-
                     b.HasKey("BuildingId");
-
-                    b.HasIndex("DepartmentId");
 
                     b.ToTable("Building");
                 });
@@ -56,6 +52,8 @@ namespace PeoplePro.Migrations
 
                     b.Property<int>("BuildingId");
 
+                    b.Property<int>("DepartmentId");
+
                     b.Property<string>("FirstName")
                         .IsRequired();
 
@@ -63,15 +61,9 @@ namespace PeoplePro.Migrations
 
                     b.HasIndex("BuildingId");
 
-                    b.ToTable("Employee");
-                });
+                    b.HasIndex("DepartmentId");
 
-            modelBuilder.Entity("PeoplePro.Models.Building", b =>
-                {
-                    b.HasOne("PeoplePro.Models.Department", "Department")
-                        .WithMany("Buildings")
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.ToTable("Employee");
                 });
 
             modelBuilder.Entity("PeoplePro.Models.Employee", b =>
@@ -79,6 +71,11 @@ namespace PeoplePro.Migrations
                     b.HasOne("PeoplePro.Models.Building", "Building")
                         .WithMany("Employees")
                         .HasForeignKey("BuildingId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("PeoplePro.Models.Department", "Department")
+                        .WithMany("Employees")
+                        .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

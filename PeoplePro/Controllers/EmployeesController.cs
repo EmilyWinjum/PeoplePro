@@ -22,7 +22,7 @@ namespace PeoplePro.Controllers
         // GET: Employees
         public async Task<IActionResult> Index()
         {
-            var peopleContext = _context.Employees.Include(e => e.Building.Department);
+            var peopleContext = _context.Employees.Include(e => e.Building).Include(e => e.Department);
             return View(await peopleContext.ToListAsync());
         }
 
@@ -36,6 +36,7 @@ namespace PeoplePro.Controllers
 
             var employee = await _context.Employees
                 .Include(e => e.Building)
+                .Include(e => e.Department)
                 .FirstOrDefaultAsync(m => m.EmployeeId == id);
             if (employee == null)
             {
@@ -49,6 +50,7 @@ namespace PeoplePro.Controllers
         public IActionResult Create()
         {
             ViewData["BuildingId"] = new SelectList(_context.Buildings, "BuildingId", "BuildingId");
+            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentId");
             return View();
         }
 
@@ -57,7 +59,7 @@ namespace PeoplePro.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EmployeeId,BuildingId,FirstName")] Employee employee)
+        public async Task<IActionResult> Create([Bind("EmployeeId,BuildingId,DepartmentId,FirstName")] Employee employee)
         {
             if (ModelState.IsValid)
             {
@@ -66,6 +68,7 @@ namespace PeoplePro.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["BuildingId"] = new SelectList(_context.Buildings, "BuildingId", "BuildingId", employee.BuildingId);
+            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentId", employee.DepartmentId);
             return View(employee);
         }
 
@@ -82,7 +85,9 @@ namespace PeoplePro.Controllers
             {
                 return NotFound();
             }
+
             ViewData["BuildingId"] = new SelectList(_context.Buildings, "BuildingId", "BuildingId", employee.BuildingId);
+            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentId", employee.DepartmentId);
             return View(employee);
         }
 
@@ -91,7 +96,7 @@ namespace PeoplePro.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EmployeeId,BuildingId,FirstName")] Employee employee)
+        public async Task<IActionResult> Edit(int id, [Bind("EmployeeId,BuildingId,DepartmentId,FirstName")] Employee employee)
         {
             if (id != employee.EmployeeId)
             {
@@ -119,6 +124,7 @@ namespace PeoplePro.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["BuildingId"] = new SelectList(_context.Buildings, "BuildingId", "BuildingId", employee.BuildingId);
+            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentId", employee.DepartmentId);
             return View(employee);
         }
 
@@ -132,6 +138,7 @@ namespace PeoplePro.Controllers
 
             var employee = await _context.Employees
                 .Include(e => e.Building)
+                .Include(e => e.Department)
                 .FirstOrDefaultAsync(m => m.EmployeeId == id);
             if (employee == null)
             {
