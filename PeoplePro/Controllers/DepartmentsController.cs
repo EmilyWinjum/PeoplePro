@@ -143,6 +143,13 @@ namespace PeoplePro.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var department = await _context.Departments.FindAsync(id);
+            var employees = await _context.Departments
+                .Include(e => e.Employees)
+                .FirstOrDefaultAsync(m => m.DepartmentId == id);
+            foreach (var employee in employees.Employees)
+            {
+                employee.DepartmentId = null;
+            }
             _context.Departments.Remove(department);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
