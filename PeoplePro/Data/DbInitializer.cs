@@ -13,7 +13,7 @@ namespace PeoplePro.Data
             context.Database.EnsureCreated();
 
             // Look for existing entries
-            if (context.Employees.Any())
+            if (context.Employees.Any() || context.Buildings.Any() || context.Departments.Any())
             {
                 return; // DB is seeded
             }
@@ -51,11 +51,11 @@ namespace PeoplePro.Data
 
             var employees = new Employee[]
             {
-                new Employee{FirstName="Emily",BuildingId=2, DepartmentId=1},
-                new Employee{FirstName="Josie",BuildingId=2, DepartmentId=1},
-                new Employee{FirstName="Chris",BuildingId=5, DepartmentId=3},
-                new Employee{FirstName="Phi",BuildingId=1, DepartmentId=4},
-                new Employee{FirstName="Zi",BuildingId=6, DepartmentId=4}
+                new Employee{FirstName="Emily",BuildingId=buildings[1].BuildingId, DepartmentId=departments[0].DepartmentId},
+                new Employee{FirstName="Josie",BuildingId=buildings[1].BuildingId, DepartmentId=departments[0].DepartmentId},
+                new Employee{FirstName="Miranda",BuildingId=buildings[4].BuildingId, DepartmentId=departments[1].DepartmentId},
+                new Employee{FirstName="Phi",BuildingId=buildings[0].BuildingId, DepartmentId=departments[3].DepartmentId},
+                new Employee{FirstName="Zi",BuildingId=buildings[5].BuildingId, DepartmentId=departments[3].DepartmentId}
             };
 
             foreach (Employee e in employees)
