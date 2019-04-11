@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PeoplePro.Models.Employee>
+﻿@model PeoplePro.Models.EmployeeViewModel  
 
 @{
     ViewData["Title"] = "Employees";
@@ -13,35 +13,63 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.FirstName)
+                @Html.DisplayNameFor(model => model.Employee.FirstName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Building)
+                @Html.DisplayNameFor(model => model.Employee.Building)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Department)
+                @Html.DisplayNameFor(model => model.Employee.Department)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Building.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Department.Name)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.EmployeeId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.EmployeeId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.EmployeeId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Employees)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Building.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department.Name)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.EmployeeId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.EmployeeId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.EmployeeId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+<!-- Add a Modal menu -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-employee">
+    Add Employee
+</button>
+<div class="modal fade" id="add-employee" tabindex="-1" role="dialog" aria-labelledby="AddEmployeeLabel" aria-hidden="true">
+    <div class="modal-dialogue" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addEmployeeLabel">Add Employee</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">x</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label asp-for="Employee.FirstName"></label>
+                        <input asp-for="Employee.FirstName" class="form-control">
+                        <span asp-validation-for="Employee.FirstName" class="text-danger"></span>
+                        @* https://softdevpractice.com/blog/asp-net-core-mvc-ajax-modals/ *@
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

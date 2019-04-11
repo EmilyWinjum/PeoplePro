@@ -22,8 +22,11 @@ namespace PeoplePro.Controllers
         // GET: Employees
         public async Task<IActionResult> Index()
         {
-            var peopleContext = _context.Employees.Include(e => e.Building).Include(e => e.Department);
-            return View(await peopleContext.ToListAsync());
+            EmployeeViewModel employeeViewModel = new EmployeeViewModel
+            {
+                Employees = await _context.Employees.Include(e => e.Building).Include(e => e.Department).ToListAsync()
+            };
+            return View(employeeViewModel);
         }
 
         // GET: Employees/Details/5
