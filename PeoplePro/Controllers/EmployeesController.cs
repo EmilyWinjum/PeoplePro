@@ -22,11 +22,36 @@ namespace PeoplePro.Controllers
         // GET: Employees
         public async Task<IActionResult> Index()
         {
-            EmployeeViewModel employeeViewModel = new EmployeeViewModel
+            var peopleContext = _context.Employees
+                .Include(e => e.Department)
+                .Include(e => e.Building);
+            return View(await peopleContext.ToListAsync());
+        }
+
+        // GET: AjaxCreate
+        public IActionResult AjaxCreate()
+        {
+            var model = new Employee();
+            ViewData["BuildingId"] = new SelectList(_context.Buildings, "BuildingId", "Name");
+            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "Name");
+
+            return PartialView("Partial");
+        }
+
+        // POST: AjaxCreate
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AjaxCreate([Bind("EmployeeId,BuildingId,DepartmentId,FirstName")] Employee employee)
+        {
+            if (ModelState.IsValid)
             {
-                Employees = await _context.Employees.Include(e => e.Building).Include(e => e.Department).ToListAsync()
-            };
-            return View(employeeViewModel);
+                _context.Add(employee);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["BuildingId"] = new SelectList(_context.Buildings, "BuildingId", "Name", employee.BuildingId);
+            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "Name", employee.DepartmentId);
+            return PartialView("Partial", employee);
         }
 
         // GET: Employees/Details/5
