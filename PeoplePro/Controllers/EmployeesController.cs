@@ -35,7 +35,7 @@ namespace PeoplePro.Controllers
             ViewData["BuildingId"] = new SelectList(_context.Buildings, "BuildingId", "Name");
             ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "Name");
 
-            return PartialView("Partial");
+            return PartialView("_Partial", model);
         }
 
         // POST: AjaxCreate
@@ -51,7 +51,7 @@ namespace PeoplePro.Controllers
             }
             ViewData["BuildingId"] = new SelectList(_context.Buildings, "BuildingId", "Name", employee.BuildingId);
             ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "Name", employee.DepartmentId);
-            return PartialView("Partial", employee);
+            return PartialView("_Partial", employee);
         }
 
         // GET: Employees/Details/5
