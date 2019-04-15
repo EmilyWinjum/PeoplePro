@@ -3,12 +3,27 @@
 
 // Write your JavaScript code.
 $(function () {
-    var placeholderElement = $('#modal-placeholder');
-    $('button[data-toggle="ajax-modal"]').click(function (event) {
-        var url = $(this).data('url');
+    $('#show-modal').click(function (event) {
+        var url = $('#add-employee').data('url');
+
         $.get(url).done(function (data) {
-            placeholderElement.html(data);
-            placeholderElement.find('.modal').modal('show');
+            $('#modal-content').html(data);
+
+            $('#add-employee').modal('show');
         });
+    });
+
+    $('#add-employee').on('click', '[data-save="modal"]', function (event) {
+        event.preventDefault();
+
+        var form = $(this).parents('.modal').find('form');
+        var actionUrl = form.attr('action');
+        var dataToSend = form.serialize();
+
+        $.post(actionUrl, dataToSend).done(function (data) {
+            $('#add-employee').modal('hide');
+            console.log("event triggered");
+        });
+        location.reload();
     });
 });

@@ -4,8 +4,6 @@
     ViewData["Title"] = "Employees";
 }
 <h1>Employees</h1>
-<script src="~/lib/jquery/dist/jquery.js"></script>
-<script src="~/js/site.js"></script>
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -49,9 +47,11 @@
 
 @* https://softdevpractice.com/blog/asp-net-core-mvc-ajax-modals/ *@
 <!-- Modal placeholder-->
-<div id="modal-placeholder"></div>
+<div class="modal fade" id="add-employee" tabindex="-1" role="dialog" aria-labelledby="addEmployeeLabel" aria-hidden="true" data-url="@Url.Action("AjaxCreate")">
+    <div id="modal-content"></div>
+</div>
 
 <!-- Button Trigger Modal -->
-<button type="button" class="btn btn-primary" data-toggle="ajax-modal" data-target="#add-employee" data-url="@Url.Action("AjaxCreate")">
+<button type="button" class="btn btn-primary" id="show-modal">
     Add Employee
 </button>

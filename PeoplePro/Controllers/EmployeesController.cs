@@ -47,10 +47,7 @@ namespace PeoplePro.Controllers
             {
                 _context.Add(employee);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
             }
-            ViewData["BuildingId"] = new SelectList(_context.Buildings, "BuildingId", "Name", employee.BuildingId);
-            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "Name", employee.DepartmentId);
             return PartialView("_Partial", employee);
         }
 
