@@ -2,18 +2,21 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+
+// https://softdevpractice.com/blog/asp-net-core-ajax-modals-part-2/ 
+
 $(function () {
     $('#show-modal').click(function (event) {
-        var url = $('#add-employee').data('url');
+        var url = $('#add').data('url');
 
         $.get(url).done(function (data) {
             $('#modal-content').html(data);
 
-            $('#add-employee').modal('show');
+            $('#add').modal('show');
         });
     });
 
-    $('#add-employee').on('click', '[data-save="modal"]', function (event) {
+    $('#add').on('click', '[data-save="modal"]', function (event) {
         event.preventDefault();
 
         var form = $(this).parents('.modal').find('form');
@@ -21,9 +24,15 @@ $(function () {
         var dataToSend = form.serialize();
 
         $.post(actionUrl, dataToSend).done(function (data) {
-            $('#add-employee').modal('hide');
-            console.log("event triggered");
+            var newBody = $('.modal-body', data);
+            $('#add').find('.modal-body').replaceWith(newBody);
+
+            var isValid = newBody.find('[name="IsValid"]').val() == 'True';
+            if (isValid) {
+                $('#add').modal('hide');
+            }
         });
-        location.reload();
+        //location.reload();
+        console.log("event triggered");
     });
 });

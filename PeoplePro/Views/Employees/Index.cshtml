@@ -3,10 +3,9 @@
 @{
     ViewData["Title"] = "Employees";
 }
+
 <h1>Employees</h1>
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
@@ -47,7 +46,7 @@
 
 @* https://softdevpractice.com/blog/asp-net-core-mvc-ajax-modals/ *@
 <!-- Modal placeholder-->
-<div class="modal fade" id="add-employee" tabindex="-1" role="dialog" aria-labelledby="addEmployeeLabel" aria-hidden="true" data-url="@Url.Action("AjaxCreate")">
+<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="addEmployeeLabel" aria-hidden="true" data-url="@Url.Action("AjaxCreate")">
     <div id="modal-content"></div>
 </div>
 

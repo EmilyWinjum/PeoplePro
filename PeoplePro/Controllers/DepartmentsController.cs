@@ -26,6 +26,28 @@ namespace PeoplePro.Controllers
             return View(await peopleContext.ToListAsync());
         }
 
+        // GET: AjaxCreate
+        public IActionResult AjaxCreate()
+        {
+            var model = new Department();
+            return PartialView("_Partial", model);
+        }
+
+        // POST: AjaxCreate
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AjaxCreate([Bind("DepartmentId,Name")] Department department)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(department);
+                await _context.SaveChangesAsync();
+            }
+            return PartialView("_Partial", department);
+        }
+
+
+
         // GET: Departments/Details/5
         public async Task<IActionResult> Details(int? id)
         {

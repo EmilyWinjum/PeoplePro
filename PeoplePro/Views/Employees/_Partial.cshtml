@@ -12,6 +12,7 @@
         </div>
         <div class="modal-body">
             <form asp-action="AjaxCreate">
+                <input name="IsValid" type="hidden" value="@ViewData.ModelState.IsValid.ToString()" />
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="EmployeeId" />
                 <div class="form-group">
@@ -32,7 +33,7 @@
             </form>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="console.log('AAAAAAAAAAaaaa')">Close</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <button type="button" class="btn btn-primary" data-save="modal">Save</button>
         </div>
     </div>
