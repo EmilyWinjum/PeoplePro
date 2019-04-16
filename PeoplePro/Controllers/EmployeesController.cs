@@ -48,6 +48,8 @@ namespace PeoplePro.Controllers
                 _context.Add(employee);
                 await _context.SaveChangesAsync();
             }
+            ViewData["BuildingId"] = new SelectList(_context.Buildings, "BuildingId", "Name");
+            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "Name");
             return PartialView("_Partial", employee);
         }
 
