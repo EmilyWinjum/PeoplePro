@@ -25,6 +25,13 @@ namespace PeoplePro.Controllers
             var peopleContext = _context.Employees
                 .Include(e => e.Department)
                 .Include(e => e.Building);
+
+            var isAjax = Request.Headers["X-Requested-With"] == "XMLHttpRequest";
+            if (isAjax)
+            {
+                return PartialView("_Table", await peopleContext.ToListAsync());
+            }
+
             return View(await peopleContext.ToListAsync());
         }
 

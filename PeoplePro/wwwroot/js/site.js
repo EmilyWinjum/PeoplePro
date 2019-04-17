@@ -29,6 +29,13 @@ $(function () {
 
             var isValid = newBody.find('[name="IsValid"]').val() == 'True';
             if (isValid) {
+
+                var tableElement = $('#data-table');
+                var tableUrl = tableElement.data('url');
+                $.get(tableUrl).done(function (table) {
+                    tableElement.replaceWith(table);
+                });
+
                 $('#add').modal('hide');
             }
         });
